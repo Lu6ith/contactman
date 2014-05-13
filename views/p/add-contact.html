@@ -1,0 +1,58 @@
+<!-- add contact modal -->
+<!--<script type="text/ng-template" id="addContactModal" />-->
+<div modal="contactAdd">
+    <div class="modal-header">
+        <h3>Dodaj kontakt</h3>
+    </div>
+    <div class="modal-body">
+        <form role="form" class="form-horizontal" ng-model="addForm">
+            <div class="form-group">
+                <label for="inputName" class="col-sm-2 control-label">Nazwisko</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputName" ng-model="form.add.lastName" name="lastname" placeholder="LastName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputName2" class="col-sm-2 control-label">Imię</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputName2" ng-model="form.add.firstName" name="firstname" placeholder="FirstName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDept" class="col-sm-2 control-label">Komórka</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputDept" ng-model="form.add.department" name="department" placeholder="Department">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="inputPhone">Telefon</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputPhone" ng-model="form.add.officePhone" name="phone" placeholder="Phone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="inputEmail">E-mail</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputEmail" ng-model="form.add.email" name="email" placeholder="E-mail">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="inputTwitter">Twitter</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputTwitter" ng-model="form.add.twitterId" name="twitter" placeholder="Twitter ID">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="inputSkype">Tagi</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputSkype" ng-model="form.add.tags" name="tags" placeholder="Tagi">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="addContact()" class="btn btn-info"><i class="icon-plus icon-white"></i> Add Contact</button>
+        <button class="btn btn-warning cancel" ng-click="cancel()">Cancel</button>
+    </div>
+</div>
+<!--</script>-->

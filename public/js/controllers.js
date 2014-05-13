@@ -1,7 +1,7 @@
 'use strict';
 function ListCtrl($scope, $modal, contactFactory) {
-  $scope.headers = ["name", "phone", "email", ""];
-  $scope.columnSort = { sortColumn: 'name', reverse: false };
+  $scope.headers = ["nazwisko", "imię", "komórka", "telefon", "email", "tags",""];
+  $scope.columnSort = { sortColumn: 'tags', reverse: true };
 
   contactFactory.getContacts().success(function(contacts) {
     $scope.contacts = contacts;
@@ -9,7 +9,8 @@ function ListCtrl($scope, $modal, contactFactory) {
   //Add contact modal
   $scope.add = function() {
     var modalInstance = $modal.open({
-      templateUrl: 'addContactModal',
+      //templateUrl: 'addContactModal',
+      templateUrl: 'p/add-contact',
       controller: addContactModalCtrl
     });
   };
@@ -17,7 +18,7 @@ function ListCtrl($scope, $modal, contactFactory) {
   $scope.view = function(c) {
     var id = c._id;
     var modalInstance = $modal.open({
-      templateUrl: 'viewContactModal',
+      templateUrl: 'p/view-contact',    //'viewContactModal',
       controller: viewContactModalCtrl,
       resolve: {
         contact: function() {
@@ -30,7 +31,7 @@ function ListCtrl($scope, $modal, contactFactory) {
   $scope.edit = function(c) {
     var id = c._id;
     var modalInstance = $modal.open({
-      templateUrl: 'editContactModal',
+      templateUrl: 'p/edit-contact',    //'editContactModal',
       controller: editContactModalCtrl,
       resolve: {
         contact: function() {
@@ -43,7 +44,7 @@ function ListCtrl($scope, $modal, contactFactory) {
   $scope.delete = function(c) {
      var id = c._id;
     var modalInstance = $modal.open({
-      templateUrl: 'deleteContactModal',
+      templateUrl: 'p/delete-contact',  //'deleteContactModal',
       controller: deleteContactModalCtrl,
       resolve: {
         contact: function() {
@@ -58,7 +59,7 @@ var addContactModalCtrl = function($scope, $http, $modalInstance, $window, conta
   $scope.form = {};
 
   $scope.addContact = function() {
-    contactFactory.addContact($scope.form.add).success(function(data) {
+    contactFactory.addContact($scope.form.add).success(function() {
       $modalInstance.close($window.location.reload());
       });
   };
@@ -69,7 +70,7 @@ var addContactModalCtrl = function($scope, $http, $modalInstance, $window, conta
 };
 
 var viewContactModalCtrl = function($scope, $modalInstance, contact) {
-  $scope.allheaders = ["name", "phone", "email", "facebook", "twitter", "skype"];
+  $scope.allheaders = ["nazwisko", "imię", "komórka", "telefon", "email", "twitter", "tagi"];
   $scope.contact = contact.data.contact;
 
   $scope.close = function() {
@@ -79,9 +80,9 @@ var viewContactModalCtrl = function($scope, $modalInstance, contact) {
 
 var editContactModalCtrl = function($scope, $modalInstance, $window, contact, contactFactory) {
   $scope.form = {};
-  $scope.allheaders = ["name", "phone", "email", "facebook", "twitter", "skype"];
+  $scope.allheaders = ["nazwisko", "imię", "komórka", "telefon", "email", "twitter", "tagi"];
   $scope.form.edit = contact.data.contact;
-  $scope.name = contact.data.contact.name;
+  $scope.name = contact.data.contact.lastName;
 
   $scope.editContact = function() {
     contactFactory.updateContact(contact.data.contact._id, $scope.form.edit).success(function() {

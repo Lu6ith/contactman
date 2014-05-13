@@ -9,4 +9,9 @@ angular.module('contacts', ['ngRoute', 'contacts.factory', 'contacts.filters', '
         redirectTo: '/'
       });
     $locationProvider.html5Mode(true);
-  }]);
+  }]).run(function($templateCache, $http){
+        $http.get('/p/add-contact', {cache:$templateCache});
+        $http.get('/p/view-contact', {cache:$templateCache});
+        $http.get('/p/edit-contact', {cache:$templateCache});
+        $http.get('/p/delete-contact', {cache:$templateCache});
+    });

@@ -4,7 +4,7 @@ angular.module("contacts.factory", []).
   factory('contactFactory', function($http){
     return {
       addContact: function(contact) {
-        return $http.post('/api/contact/', contact); 
+        return $http.post('/api/contact/', contact);
       },
       getContacts: function() {
         return $http.get('/api/contact/');
@@ -13,6 +13,7 @@ angular.module("contacts.factory", []).
         return $http.get('/api/contact/' + id);
       },
       updateContact: function(id, contact) {
+        console.log('Update - ', id);
         return $http.put('/api/contact/' + id, contact);
       },
       deleteContact: function(id) {
