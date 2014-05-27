@@ -52,8 +52,25 @@ function ListCtrl($scope, $modal, contactFactory) {
         }
       }
     });
-  }
-}
+  };
+
+  $scope.searchFilter = function (c) {
+     var keyword = new RegExp($scope.query, 'i');
+     return !$scope.query || keyword.test(c.lastName) || keyword.test(c.firstName);
+  };
+
+  $scope.searchStaff = function (c) {
+      var keyword = new RegExp("PSEC - ZT", 'i');
+      return "PSEC - ZT" || keyword.test(c.tags);
+  };
+
+    $scope.workspaces =
+        [
+            { id: 1, name: "Kontakty", active:true, filtr: {tags: '!PSEC - ZT'} },
+            { id: 2, name: "Pracownicy", active:false, filtr: {tags : 'PSEC - ZT'} }
+        ];
+
+};
 
 var addContactModalCtrl = function($scope, $http, $modalInstance, $window, contactFactory) {
   $scope.form = {};
@@ -111,4 +128,34 @@ var deleteContactModalCtrl = function($scope, $route, $modalInstance, $window, c
   $scope.cancel = function() {
     $modalInstance.dismiss('cancel')
   };
+};
+
+var TabsParentController = function ($scope) {
+
+    var setAllInactive = function() {
+        angular.forEach($scope.workspaces, function(workspace) {
+            workspace.active = false;
+        });
+    };
+
+    var addNewWorkspace = function() {
+        var id = $scope.workspaces.length + 1;
+        $scope.workspaces.push({
+            id: id,
+            name: "Workspace " + id,
+            active: true
+        });
+    };
+
+    $scope.workspaces =
+        [
+            { id: 1, name: "Kontakty", active:true, filtr: $scope.searchFilter() },
+            { id: 2, name: "Pracownicy", active:false, filtr: {tags : 'PSEC - ZT'} }
+        ];
+
+    $scope.addWorkspace = function () {
+        setAllInactive();
+        //addNewWorkspace();
+    };
+
 };
