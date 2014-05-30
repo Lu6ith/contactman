@@ -1,7 +1,10 @@
 'use strict';
 function ListCtrl($scope, $modal, contactFactory) {
-  $scope.headers = ["nazwisko", "imię", "komórka", "telefon", "email", "tags",""];
+  $scope.headers = ["nazwisko", "imię", "firma", "telefon", "email", "tags",""];
   $scope.columnSort = { sortColumn: 'tags', reverse: true };
+
+  $scope.headersp = ["nazwisko", "imię", "komórka", "telefon", "email", "tags",""];
+  $scope.columnSortp = { sortColumn: 'lastName', reverse: false };
 
   contactFactory.getContacts().success(function(contacts) {
     $scope.contacts = contacts;
@@ -64,11 +67,11 @@ function ListCtrl($scope, $modal, contactFactory) {
       return "PSEC - ZT" || keyword.test(c.tags);
   };
 
-    $scope.workspaces =
-        [
-            { id: 1, name: "Kontakty", active:true, filtr: {tags: '!PSEC - ZT'} },
-            { id: 2, name: "Pracownicy", active:false, filtr: {tags : 'PSEC - ZT'} }
-        ];
+  $scope.workspaces =
+     [
+         { id: 1, name: "Kontakty", active:true, filtr: {tags: '!PSEC - ZT'}, contentURL: 'p/kontakty' },
+         { id: 2, name: "Pracownicy", active:false, filtr: {tags : 'PSEC - ZT'}, contentURL: 'p/pracownicy' }
+     ];
 
 };
 
@@ -87,7 +90,7 @@ var addContactModalCtrl = function($scope, $http, $modalInstance, $window, conta
 };
 
 var viewContactModalCtrl = function($scope, $modalInstance, contact) {
-  $scope.allheaders = ["nazwisko", "imię", "komórka", "telefon", "email", "twitter", "tagi"];
+  $scope.allheaders = ["nazwisko", "imię", "firma", "komórka", "telefon", "email", "twitter", "tagi"];
   $scope.contact = contact.data.contact;
 
   $scope.close = function() {
@@ -97,7 +100,7 @@ var viewContactModalCtrl = function($scope, $modalInstance, contact) {
 
 var editContactModalCtrl = function($scope, $modalInstance, $window, contact, contactFactory) {
   $scope.form = {};
-  $scope.allheaders = ["nazwisko", "imię", "komórka", "telefon", "email", "twitter", "tagi"];
+  $scope.allheaders = ["nazwisko", "imię", "firma", "komórka", "telefon", "email", "twitter", "tagi"];
   $scope.form.edit = contact.data.contact;
   $scope.name = contact.data.contact.lastName;
 

@@ -2,15 +2,17 @@
 <!--<script type="text/ng-template" id="viewContactModal" />-->
 <div modal="contactView">
     <div class="modal-header">
-        <h3>{{ contact.firstName }}</h3>
+        <h3>{{ contact.firstName }} {{ contact.lastName }}</h3>
     </div>
     <div class="modal-body">
-
+        <img ng-if="contact.picture != ''" src="/pics/{{ contact.picture }}" alt="..." class="img-thumbnail img-responsive">
+        <img ng-if="contact.picture == ''" src="/pics/James_King.jpg" alt="..." class="img-thumbnail img-responsive">
         <dl class="dl-horizontal">
             <dt ng-repeat="header in allheaders ">{{ header | capitalise}}:</dt>
             <dd>{{ contact.lastName }}</dd>
             <dd>{{ contact.firstName }}</dd>
             <dd>{{ contact.department }}</dd>
+            <dd>{{ contact.cellPhone || " - " }}</dd>
             <dd>{{ contact.officePhone || " - " }}</dd>
             <dd><a href="mailto:{{ contact.email }}">{{ contact.email || " - " }}</a></dd>
             <dd><a href="https://www.twitter.com/{{ contact.twitter }}" target="_blank">{{ contact.twitterId || " - " }}</a></dd>

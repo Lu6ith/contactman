@@ -5,6 +5,7 @@
   <li ng-if="contacts.length > 1">Zapisano {{ contacts.length }} kontaktów.</li>
 </ul>
 
+  <div class="row">
     <div class="col-sm-3 col-xs-12 col-lg-3">
       <form class="form-search">
           <div class="input-group">
@@ -16,35 +17,20 @@
       </form>
     </div>
 
-  <a class="btn btn-info" ng-click="add()"><i class="glyphicon-plus glyphicon"></i> </a>
+    <a class="btn btn-info" ng-click="add()"><i class="glyphicon-plus glyphicon"></i> </a>
 <!--  <button class="btn btn-info" type="submit" ng-model="pseonly"><i class="glyphicon-minus-sign glyphicon"></i> </button>-->
+  </div>
 
+  <div class="row">
+      <div class="col-md-12 center-block"><p class="bg-success">.</p></div>
+  </div>
+
+  <div class="row">
   <div class="col-md-12">
     <tabset>
-    <tab ng-repeat="workspace in workspaces" heading="{{workspace.name}}" active=workspace.active>
-    <table class="table table-hover table-bordered table-striped table-condensed" ng-show="contacts.length >= 1" >
-        <thead class="info">
-            <tr class="blue">
-                <th ng-repeat="header in headers"><a href="#" ng-click="columnSort.sortColumn=headers[$index];columnSort.reverse=!columnSort.reverse">{{ headers[$index] | capitalise }}</a></th>
-            </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="contact in contacts |  orderBy:columnSort.sortColumn:columnSort.reverse | filter: workspace.filtr | filter: searchFilter">
-            <td>{{ contact.lastName }}</td>
-            <td>{{ contact.firstName }}</td>
-            <td>{{ contact.department }}</td>
-            <td>{{ contact.officePhone }} </td>
-            <td><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></td>
-            <td ng-if="contact.tags == 'PSEC - ZT'"><span class="label label-success">{{ contact.tags }}</span> </td>
-            <td ng-if="contact.tags != 'PSEC - ZT'"><span class="label label-default">{{ contact.tags }}</span> </td>
-            <td>
-              <a class="btn btn-info btn-sm" ng-click="view(contact)"><i class="glyphicon-eye-open glyphicon"></i> </a>
-              <a class="btn btn-warning btn-sm" ng-click="edit(contact)"><i class="glyphicon-pencil glyphicon"></i> </a>
-              <a class="btn btn-danger btn-sm" href="#" ng-click="delete(contact)"><i class="glyphicon-trash glyphicon"></i> </a>
-            </td>
-          </tr>
-        </tbody>
-    </table>
-    </tab>
+        <tab ng-repeat="workspace in workspaces" heading="{{workspace.name}}" active=workspace.active >
+            <div ng-include="workspace.contentURL"></div>
+        </tab>
     </tabset>
+  </div>
   </div>

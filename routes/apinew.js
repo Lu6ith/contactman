@@ -23,7 +23,7 @@ var ContactSchema= new Schema({
 });
 
 var ContactModel = mongoose.model('Contact', ContactSchema);
-mongoose.connect('mongodb://localhost/contacts');
+mongoose.connect('mongodb://192.168.73.30/contacts');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -100,6 +100,7 @@ exports.edit = function (req, res) {
             contact.lastName = req.body.lastName,
             contact.firstName = req.body.firstName,
             contact.department = req.body.department,
+            contact.cellPhone = req.body.cellPhone,
             contact.officePhone = req.body.officePhone,
             contact.email = req.body.email,
             //contact.facebook = req.body.facebook,

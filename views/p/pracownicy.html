@@ -1,0 +1,23 @@
+<table class="table table-hover table-bordered table-striped table-condensed" ng-show="contacts.length >= 1" >
+    <thead class="info">
+    <tr class="blue">
+        <th ng-repeat="header in headersp"><a href="#" ng-click="columnSortp.sortColumn=headersp[$index];columnSortp.reverse=!columnSortp.reverse">{{ headersp[$index] | capitalise }}</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="contact in contacts |  orderBy:columnSortp.sortColumn:columnSortp.reverse | filter: workspace.filtr | filter: searchFilter">
+        <td>{{ contact.lastName }}</td>
+        <td>{{ contact.firstName }}</td>
+        <td>{{ contact.cellPhone }}</td>
+        <td>{{ contact.officePhone }} </td>
+        <td><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></td>
+        <td ng-if="contact.tags == 'PSEC - ZT'"><span class="label label-success">{{ contact.tags }}</span> </td>
+        <td ng-if="contact.tags != 'PSEC - ZT'"><span class="label label-default">{{ contact.tags }}</span> </td>
+        <td>
+            <a class="btn btn-info btn-sm" ng-click="view(contact)"><i class="glyphicon-eye-open glyphicon"></i> </a>
+            <a class="btn btn-warning btn-sm" ng-click="edit(contact)"><i class="glyphicon-pencil glyphicon"></i> </a>
+            <a class="btn btn-danger btn-sm" href="#" ng-click="delete(contact)"><i class="glyphicon-trash glyphicon"></i> </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
