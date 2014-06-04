@@ -74,6 +74,7 @@ exports.add = function(req, res) {
         lastName: req.body.lastName,
         firstName: req.body.firstName,
         department: req.body.department,
+        cellPhone: req.body.cellPhone,
         officePhone: req.body.officePhone,
         email: req.body.email,
         //facebook: req.body.facebook,

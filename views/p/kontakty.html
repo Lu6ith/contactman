@@ -9,10 +9,15 @@
         <td>{{ contact.lastName }}</td>
         <td>{{ contact.firstName }}</td>
         <td>{{ contact.department }}</td>
-        <td>{{ contact.officePhone }} </td>
+        <td><span class="glyphicon glyphicon-phone-alt"></span> {{ contact.officePhone }} <br/>
+            <span class="glyphicon glyphicon-phone"></span> {{ contact.cellPhone }}
+        </td>
         <td><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></td>
-        <td ng-if="contact.tags == 'PSEC - ZT'"><span class="label label-success">{{ contact.tags }}</span> </td>
-        <td ng-if="contact.tags != 'PSEC - ZT'"><span class="label label-default">{{ contact.tags }}</span> </td>
+        <td ng-if="contact.tags.toLowerCase().indexOf('farmy') >= 0"><span class="label label-info">{{ contact.tags }}</span> </td>
+        <td ng-if="contact.tags.toLowerCase().indexOf('telemech') >= 0"><span class="label label-success">{{ contact.tags }}</span> </td>
+        <td ng-if="contact.tags.toLowerCase().indexOf('syndis') >= 0"><span class="label label-primary">{{ contact.tags }}</span> </td>
+        <td ng-if="contact.tags.toLowerCase().indexOf('windex') >= 0"><span class="label label-default">{{ contact.tags }}</span> </td>
+        <td ng-if="contact.tags.toLowerCase().indexOf('zdr') >= 0"><span class="label label-warning">{{ contact.tags }}</span> </td>
         <td>
             <a class="btn btn-info btn-sm" ng-click="view(contact)"><i class="glyphicon-eye-open glyphicon"></i> </a>
             <a class="btn btn-warning btn-sm" ng-click="edit(contact)"><i class="glyphicon-pencil glyphicon"></i> </a>
