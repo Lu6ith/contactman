@@ -38,3 +38,5 @@ Previous articles related to this topic:
   <li>http://tamas.io/contact-manager-written-in-angularjs-express-and-mongodb-episode-2/</li>
   <li>http://tamas.io/contact-manager-written-in-angularjs-express-and-mongodb-episode-3/</li>
 </ul>
+
+https://www.codeship.io/projects/92076950-cea7-0131-1d76-4685d0c4aa32/status
